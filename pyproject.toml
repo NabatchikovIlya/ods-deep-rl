@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "ods-deep-rl"
+version = "0.1.0"
+description = ""
+authors = ["ilyanabatchikov <inabatchikov@dpkapp.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+gym = "0.24.0"
+numpy = "1.25.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
