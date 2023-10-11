@@ -1,4 +1,5 @@
 import gym
+import gym_maze
 import numpy as np
 import time
 
