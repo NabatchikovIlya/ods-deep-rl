@@ -12,6 +12,7 @@ ACTION_N = 6
 random.seed(42)
 np.random.seed(42)
 
+
 class CrossEntropyAgent:
     def __init__(self, state_n: int, action_n: int):
         self.state_n = state_n
@@ -141,4 +142,3 @@ if __name__ == "__main__":
     print("Максимальная награда на последней итерации:", results["info"][-1]["max_total_reward"])
     print(results)
     trajectory = agent.get_trajectory(env=results["env"], max_len=500, visualize=True)
-
