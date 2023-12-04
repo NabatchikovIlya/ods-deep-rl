@@ -23,7 +23,15 @@ class Qfunction(nn.Module):
 
 class DQN:
     def __init__(
-        self, state_dim, action_dim, layer_size, gamma=0.99, lr=1e-3, batch_size=64, epsilon_decrease=0.01, epsilon_min=0.01
+        self,
+        state_dim,
+        action_dim,
+        layer_size,
+        gamma=0.99,
+        lr=1e-3,
+        batch_size=64,
+        epsilon_decrease=0.01,
+        epsilon_min=0.01,
     ):
         self.state_dim = state_dim
         self.action_dim = action_dim
@@ -49,9 +57,16 @@ class DQN:
 
         if len(self.memory) > self.batch_size:
             batch = random.sample(self.memory, self.batch_size)
-            states, actions, rewards, dones, next_states = map(torch.tensor, list(zip(*batch)))
+            states, actions, rewards, dones, next_states = map(
+                torch.tensor, list(zip(*batch))
+            )
 
-            targets = rewards + self.gamma * (1 - dones) * torch.max(self.q_function(next_states), dim=1).values
+            targets = (
+                rewards
+                + self.gamma
+                * (1 - dones)
+                * torch.max(self.q_function(next_states), dim=1).values
+            )
             q_values = self.q_function(states)[torch.arange(self.batch_size), actions]
 
             loss = torch.mean((q_values - targets.detach()) ** 2)
